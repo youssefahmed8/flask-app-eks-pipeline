@@ -4,9 +4,9 @@
 
 ## Prerequisites
 
-1- AWS EC2 Instance for Jenkins - Includes Docker installed.
-2- AWS EKS Cluster - Set up and ready to deploy applications.
-3- Accounts - AWS , GitHub and Docker Hub for repository and image hosting.
+- 1- AWS EC2 Instance for Jenkins - Includes Docker installed.
+- 2- AWS EKS Cluster - Set up and ready to deploy applications.
+- 3- Accounts - AWS , GitHub and Docker Hub for repository and image hosting.
 
 
 ### 1. Setup Jenkins on AWS EC2 Instance
