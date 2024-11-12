@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Check if Docker is installed
+      command: docker --version
+      register: docker_version
+      ignore_errors: yes  # Ignore error if Docker is not installed
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+      when: docker_version.rc != 0  # Only install if Docker is not found
+
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull Docker image from Docker Hub
+      docker_image:
+        name: "omar88/flask-app:latest"
+        source: pull
+
+    # New Stage: Remove the existing container before running a new one
+    - name: Remove existing Docker container if it exists
+      docker_container:
+        name: app_container
+        state: absent  # Remove the container if it exists
+      ignore_errors: yes  # Ignore error if the container is not found
+
+    - name: Run the Docker container
+      docker_container:
+        name: app_container
+        image: "omar88/flask-app:latest"
+        state: started
+        ports:
+          - "5000:5000"  # Adjust port as necessary
+

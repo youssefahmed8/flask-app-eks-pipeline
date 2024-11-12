@@ -1,0 +1,2 @@
+[webservers]
+ec2-54-162-131-117.compute-1.amazonaws.com ansible_user=ubuntu ansible_ssh_private_key_file=~/Users/omar/sudoer.pem
