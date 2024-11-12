@@ -51,7 +51,7 @@ pipeline {
 
     post {
         always {
-            mail to: 'Build_status@gmail.com',
+            mail to: 'Build_status@gmail.com',// edit with your email
             subject: "Job ${env.JOB_NAME} Build #${env.BUILD_NUMBER} Status",
             body: "The build ${env.BUILD_URL} completed with status: ${currentBuild.currentResult}"
         }
